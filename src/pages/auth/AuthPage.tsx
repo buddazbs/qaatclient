@@ -36,7 +36,7 @@ export const AuthPage: React.FC = () => {
       minHeight: '100vh',
       background: 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)'
     }}>
-      <Card style={{ width: 400, boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}>
+      <Card style={{ width: 400, boxShadow: '0 4px 12px rgba(0,0,0,0.1)', borderRadius: 8 }}>
         <div style={{ textAlign: 'center', marginBottom: 24 }}>
           <Title level={2}>IT Стартап</Title>
           <p>Войдите в свою учетную запись</p>

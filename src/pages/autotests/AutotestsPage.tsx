@@ -156,7 +156,10 @@ export const AutotestsPage: React.FC = () => {
             <div style={{ textAlign: 'center', padding: '40px 0' }}>
               <Space direction="vertical" size="large">
                 <BarChartOutlined style={{ fontSize: 48, color: '#1890ff' }} />
-                <p>График запусков тестов по рынкам</p>
+                <div>
+                  <Title level={4} style={{ margin: 0 }}>График запусков тестов по рынкам</Title>
+                  <Text type="secondary">Столбчатая диаграмма с количеством запусков по рынкам</Text>
+                </div>
               </Space>
             </div>
           </Card>
@@ -166,7 +169,10 @@ export const AutotestsPage: React.FC = () => {
             <div style={{ textAlign: 'center', padding: '40px 0' }}>
               <Space direction="vertical" size="large">
                 <PieChartOutlined style={{ fontSize: 48, color: '#ff4d4f' }} />
-                <p>Диаграмма частоты падений тестов</p>
+                <div>
+                  <Title level={4} style={{ margin: 0 }}>Диаграмма частоты падений тестов</Title>
+                  <Text type="secondary">Круговая диаграмма с частотой падений тестов</Text>
+                </div>
               </Space>
             </div>
           </Card>
@@ -179,7 +185,10 @@ export const AutotestsPage: React.FC = () => {
             <div style={{ textAlign: 'center', padding: '40px 0' }}>
               <Space direction="vertical" size="large">
                 <LineChartOutlined style={{ fontSize: 48, color: '#52c41a' }} />
-                <p>График общей динамики прохождения тестов</p>
+                <div>
+                  <Title level={4} style={{ margin: 0 }}>График общей динамики прохождения тестов</Title>
+                  <Text type="secondary">Линейный график с динамикой прохождения тестов</Text>
+                </div>
               </Space>
             </div>
           </Card>

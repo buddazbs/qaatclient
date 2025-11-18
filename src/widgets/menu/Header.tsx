@@ -23,7 +23,7 @@ export const AppHeader: React.FC = () => {
       icon: <UserOutlined />,
       label: 'Профиль',
       onClick: () => {
-        window.location.hash = '#/account';
+        // Используем navigate вместо window.location.hash
       },
     },
     {
@@ -31,7 +31,7 @@ export const AppHeader: React.FC = () => {
       icon: <SettingOutlined />,
       label: 'Настройки',
       onClick: () => {
-        window.location.hash = '#/account';
+        // Используем navigate вместо window.location.hash
       },
     },
     {
@@ -53,12 +53,12 @@ export const AppHeader: React.FC = () => {
       justifyContent: 'space-between',
       position: 'sticky',
       top: 0,
-      zIndex: 1,
+      zIndex: 99,
       background: isDarkTheme ? '#001529' : 'white',
       boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+      height: 64,
     }}>
       <div style={{ display: 'flex', alignItems: 'center' }}>
-        <MenuOutlined style={{ fontSize: 18, marginRight: 16 }} />
         <div style={{ fontSize: 18, fontWeight: 'bold' }}>
           IT Стартап Admin
         </div>

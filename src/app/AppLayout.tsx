@@ -10,10 +10,20 @@ export const AppLayout: React.FC<{ children: React.ReactNode }> = ({ children })
 
   return (
     <Layout style={{ minHeight: '100vh' }}>
-      <SidebarMenu />
-      <Layout className={collapsed ? 'collapsed' : ''}>
+      <SidebarMenu collapsed={collapsed} setCollapsed={setCollapsed} />
+      <Layout 
+        className={collapsed ? 'collapsed' : ''}
+        style={{ 
+          marginLeft: collapsed ? 80 : 250,
+          transition: 'margin-left 0.2s'
+        }}
+      >
         <AppHeader />
-        <Content style={{ margin: '24px 16px 0', overflow: 'initial' }}>
+        <Content style={{ 
+          margin: '24px 16px 0', 
+          overflow: 'initial',
+          paddingTop: 24
+        }}>
           <div className="main-content">
             {children}
           </div>

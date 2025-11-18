@@ -18,6 +18,7 @@ import {
   SaveOutlined
 } from '@ant-design/icons';
 import { useAuth } from '@entities/user/useAuth';
+import { useNavigate } from 'react-router-dom';
 
 const { Title } = Typography;
 
@@ -25,6 +26,7 @@ export const AccountPage: React.FC = () => {
   const { user } = useAuth();
   const [loading, setLoading] = useState(false);
   const [avatarUrl, setAvatarUrl] = useState(user?.avatar || '');
+  const navigate = useNavigate();
 
   const onFinishProfile = async (values: { username: string; email: string }) => {
     setLoading(true);

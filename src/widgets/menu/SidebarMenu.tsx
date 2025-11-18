@@ -61,8 +61,10 @@ const menuItems: MenuItem[] = [
   },
 ];
 
-export const SidebarMenu: React.FC = () => {
-  const [collapsed, setCollapsed] = useState(false);
+export const SidebarMenu: React.FC<{ collapsed: boolean; setCollapsed: (collapsed: boolean) => void }> = ({ 
+  collapsed, 
+  setCollapsed 
+}) => {
   const navigate = useNavigate();
   const location = useLocation();
   const { user } = useAuth();
@@ -96,6 +98,8 @@ export const SidebarMenu: React.FC = () => {
         left: 0,
         top: 0,
         bottom: 0,
+        zIndex: 100,
+        boxShadow: '2px 0 8px rgba(0, 0, 0, 0.15)',
       }}
     >
       <div className="logo" style={{ 
@@ -105,10 +109,29 @@ export const SidebarMenu: React.FC = () => {
         justifyContent: 'center',
         color: 'white',
         fontSize: 18,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        background: 'rgba(255, 255, 255, 0.1)',
+        margin: '16px 8px',
+        borderRadius: 8,
       }}>
         {collapsed ? 'IT' : 'IT Стартап'}
       </div>
+      
+      <Menu
+        theme="dark"
+        mode="inline"
+        selectedKeys={[location.pathname]}
+        onClick={handleMenuClick}
+        items={filteredMenuItems.map(item => ({
+          key: item.path,
+          icon: item.icon,
+          label: item.label,
+        }))}
+        style={{ 
+          background: 'transparent',
+          border: 'none'
+        }}
+      />
       
       <Button
         type="text"
@@ -121,19 +144,9 @@ export const SidebarMenu: React.FC = () => {
           right: 16,
           textAlign: 'center',
           color: 'white',
+          background: 'rgba(255, 255, 255, 0.1)',
+          borderRadius: 4,
         }}
-      />
-      
-      <Menu
-        theme="dark"
-        mode="inline"
-        selectedKeys={[location.pathname]}
-        onClick={handleMenuClick}
-        items={filteredMenuItems.map(item => ({
-          key: item.path,
-          icon: item.icon,
-          label: item.label,
-        }))}
       />
     </Sider>
   );

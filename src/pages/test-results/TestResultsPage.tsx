@@ -18,7 +18,7 @@ import {
 } from '@ant-design/icons';
 import { useAutotests } from '@shared/hooks/useAutotests';
 
-const { Title } = Typography;
+const { Title, Text } = Typography;
 
 // Типы статусов тестов
 type TestStatus = 'passed' | 'failed' | 'running';
