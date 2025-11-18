@@ -25,35 +25,35 @@ interface MenuItem {
 
 const menuItems: MenuItem[] = [
   {
-    key: 'dashboard',
+    key: '/dashboard',
     icon: <DashboardOutlined />,
     label: 'Дашборд',
     path: '/dashboard',
     roles: ['admin', 'user'],
   },
   {
-    key: 'autotests',
+    key: '/autotests',
     icon: <BugOutlined />,
     label: 'Автотесты',
     path: '/autotests',
     roles: ['admin'],
   },
   {
-    key: 'test-results',
+    key: '/test-results',
     icon: <BarChartOutlined />,
     label: 'Результаты тестов',
     path: '/test-results',
     roles: ['admin'],
   },
   {
-    key: 'callback',
+    key: '/callback',
     icon: <SendOutlined />,
     label: 'Отправить коллбэк',
     path: '/callback',
     roles: ['admin', 'user'],
   },
   {
-    key: 'account',
+    key: '/account',
     icon: <UserOutlined />,
     label: 'Аккаунт',
     path: '/account',

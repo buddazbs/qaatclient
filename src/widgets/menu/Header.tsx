@@ -19,7 +19,7 @@ export const AppHeader: React.FC = () => {
 
   const items: MenuProps['items'] = [
     {
-      key: 'account',
+      key: '/account',
       icon: <UserOutlined />,
       label: 'Профиль',
       onClick: () => {
@@ -27,7 +27,7 @@ export const AppHeader: React.FC = () => {
       },
     },
     {
-      key: 'settings',
+      key: '/settings',
       icon: <SettingOutlined />,
       label: 'Настройки',
       onClick: () => {
@@ -38,7 +38,7 @@ export const AppHeader: React.FC = () => {
       type: 'divider',
     },
     {
-      key: 'logout',
+      key: '/logout',
       icon: <LogoutOutlined />,
       label: 'Выйти',
       onClick: logout,
