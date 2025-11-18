@@ -8,6 +8,7 @@ workflows:
   build-workflow:
     tasks:
       - build-task
+      - deploy-task
 
 tasks:
   - name: build-task
@@ -17,11 +18,26 @@ tasks:
       - name: docker-build
         script:
           - docker build . --file Dockerfile --tag $IMAGE_URI:$(date +%s)
-      # Опционально: Нужен Docker Hub account либо другой Docker Registry. Как настроить Yandex Cloud Container Registry см пример в документации.
-      # - name: push-dockerhub
-      #   env:
-      #     USER: ${{ secrets.user }}
-      #     PAT: ${{ secrets.PAT }}
-      #   script:
-      #     - echo $PAT | docker login --username $USER --password-stdin
-      #     - docker push $IMAGE_URI
+  - name: deploy-task
+    cubes:
+      - name: build-site
+        script:
+          - chmod +x build-site.sh
+          - ./build-site.sh
+          - |
+            if [ -n "$(git status --porcelain public)" ]; then
+              git config --global user.email "ci@sourcecraft.dev"
+              git config --global user.name "SourceCraft CI"
+              git add public
+              git commit -m "Update static site build [skip ci]"
+            else
+              echo "No changes in public folder"
+            fi
+      - name: push-changes
+        script:
+          - |
+            if [ -n "$(git status --porcelain public)" ]; then
+              git push origin main
+            else
+              echo "No changes to push"
+            fi
