@@ -1,11 +1,7 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "es6"
-    ],
+    "target": "es6",
+    "lib": ["dom","dom.iterable","es6"],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -17,8 +13,6 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": true,
-    "ignoreDeprecations": "6.0",
     "jsx": "react-jsx",
     "baseUrl": "src",
     "paths": {
@@ -27,17 +21,9 @@
       "@widgets/*": ["widgets/*"],
       "@entities/*": ["entities/*"],
       "@shared/*": ["shared/*"]
-    }
+    },
+    "noEmit": false
   },
-  "include": [
-    "src"
-  ],
-    "exclude": [
-    "src/**/*.test.ts",
-    "src/**/*.test.tsx",
-    "src/**/*.spec.ts",
-    "src/**/*.spec.tsx",
-    "src/__tests__",
-    "node_modules"
-  ]
+  "include": ["src"],
+  "exclude": ["node_modules", "src/__tests__"]
 }

@@ -5,8 +5,8 @@
   "homepage": "https://buddazbs.github.io/qaatclient",
   "main": "index.tsx",
   "scripts": {
-    "start": "webpack serve --config webpack.dev.js --env development",
-    "build": "webpack --config webpack.prod.js --env production",
+    "start": "webpack serve --config webpack.config.js --env development",
+    "build": "webpack --config webpack.config.js --env production",
     "clean": "rimraf build dist",
     "start:serve": "cd build && npx serve -s .",
     "lint": "echo \"No linter configured\" && exit 0",
@@ -27,10 +27,15 @@
     "react-router-dom": "^6.14.2"
   },
   "devDependencies": {
+    "@babel/core": "^7.28.5",
+    "@babel/preset-env": "^7.28.5",
+    "@babel/preset-react": "^7.28.5",
+    "@babel/preset-typescript": "^7.28.5",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.0",
     "@types/jest": "^30.0.0",
     "autoprefixer": "^10.4.22",
+    "babel-loader": "^10.0.0",
     "clean-webpack-plugin": "^4.0.0",
     "copy-webpack-plugin": "^13.0.1",
     "css-loader": "^7.1.2",
