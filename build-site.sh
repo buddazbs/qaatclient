@@ -1,33 +1,43 @@
 #!/bin/bash
-
-# Скрипт для сборки React-приложения и обновления папки public для SourceCraft Sites
+set -e
 
 echo "Начинаем сборку React-приложения..."
 
-# Устанавливаем зависимости
+# Устанавливаем все зависимости, включая dev
 npm ci
+
+# Проверяем наличие public/index.html
+if [ ! -f "public/index.html" ]; then
+  echo "Ошибка: public/index.html отсутствует"
+  exit 1
+fi
 
 # Собираем приложение
 npm run build
 
-# Проверяем, что сборка прошла успешно
+# Проверяем, что build создан
 if [ ! -d "build" ]; then
   echo "Ошибка: папка build не была создана"
   exit 1
 fi
 
-echo "Сборка завершена успешно"
+# Чистим public, кроме index.html
+find public ! -name 'index.html' -type f -exec rm -f {} +
+find public ! -name 'index.html' -type d -exec rm -rf {} +
 
-# Очищаем папку public
-rm -rf public/*
-
-# Копируем собранные файлы в папку public
+# Копируем сборку в public
 cp -r build/* public/
 
 # Добавляем изменения в git
 git add public
 
-echo "Папка public обновлена"
-echo "Теперь можно закоммитить изменения:"
-echo "git commit -m "Update static site build""
-echo "git push origin main"
+if [ -n "$(git status --porcelain public)" ]; then
+  git config --global user.email "ci@sourcecraft.dev"
+  git config --global user.name "SourceCraft CI"
+  git commit -m "Update static site build [skip ci]"
+  git push origin main
+else
+  echo "Изменений в public нет"
+fi
+
+echo "Сборка и деплой public завершены"
