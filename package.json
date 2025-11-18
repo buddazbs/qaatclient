@@ -3,18 +3,19 @@
   "version": "1.0.0",
   "description": "Современная админ-панель для IT стартапа",
   "main": "index.tsx",
-"scripts": {
-  "start": "craco start",
-  "build": "craco build",
-  "test": "craco test",
-  "eject": "react-scripts eject"
-},
+  "scripts": {
+    "start": "craco start",
+    "build": "craco build",
+    "test": "craco test",
+    "eject": "react-scripts eject"
+  },
   "dependencies": {
     "@ant-design/icons": "^5.1.4",
     "@reduxjs/toolkit": "^1.9.5",
     "antd": "^5.7.0",
     "axios": "^1.4.0",
     "classnames": "^2.3.2",
+    "ogl": "^1.0.11",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^8.1.1",
