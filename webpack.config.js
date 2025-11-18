@@ -7,13 +7,14 @@ const Dotenv = require('dotenv-webpack');
 
 module.exports = (env, argv) => {
   const isProd = argv.mode === 'production';
+  const publicPath = isProd ? '/repo-name/' : './';
 
   return {
     entry: './src/index.tsx',
     output: {
-      path: path.resolve(__dirname, 'dist'),
+      path: path.resolve(__dirname, 'build'),
       filename: 'static/js/[name].[contenthash:8].js',
-      publicPath: '/', // SPA и прод-сборка
+      publicPath: publicPath,
       clean: true,
     },
     mode: isProd ? 'production' : 'development',

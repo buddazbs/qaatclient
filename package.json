@@ -1,16 +1,13 @@
 {
-  "name": "itstartup-admin",
+  "name": "admin",
   "version": "1.0.0",
   "description": "админ-панель",
-  "homepage": "https://buddazbs.github.io/qaatclient",
+  "homepage": "https://buddazbs.github.io/qaatclient/",
   "main": "index.tsx",
   "scripts": {
-    "start": "webpack serve --config webpack.config.js --env development",
-    "build": "webpack --config webpack.config.js --env production",
     "clean": "rimraf build dist",
-    "start:serve": "cd build && npx serve -s .",
-    "lint": "echo \"No linter configured\" && exit 0",
-    "test": "echo \"No tests configured\" && exit 0",
+    "build": "webpack --mode production",
+    "dev": "webpack serve",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
