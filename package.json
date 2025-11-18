@@ -1,9 +1,8 @@
 {
   "name": "itstartup-admin",
   "version": "1.0.0",
-  "description": "Современная админ-панель для IT стартапа",
+  "description": "админ-панель",
   "main": "index.tsx",
-  "homepage": "./",
   "scripts": {
     "start": "webpack serve --config webpack.dev.js --env development",
     "build": "webpack --config webpack.prod.js --env production",
@@ -53,17 +52,5 @@
     "webpack-cli": "^6.0.1",
     "webpack-dev-server": "^5.2.2",
     "webpack-merge": "^6.0.1"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
   }
 }

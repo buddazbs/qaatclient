@@ -12,7 +12,7 @@ module.exports = merge(common, {
   output: {
     path: path.resolve(__dirname, 'build'),
     filename: 'static/js/[name].[contenthash:8].js',
-    publicPath: './', // относительные пути для GH Pages
+    publicPath: '',
     clean: true,
   },
   module: {
@@ -32,10 +32,7 @@ module.exports = merge(common, {
       filename: 'static/css/[name].[contenthash:8].css'
     }),
     new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, 'public/index.html'),
-      filename: 'index.html',
-      inject: 'body',
-      minify: true
+      template: './public/index.html'
     })
   ],
   optimization: {
