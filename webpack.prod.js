@@ -12,7 +12,7 @@ module.exports = merge(common, {
   output: {
     path: path.resolve(__dirname, 'build'),
     filename: 'static/js/[name].[contenthash:8].js',
-    publicPath: './', // относительные пути для локального открытия
+    publicPath: './', // относительные пути для GH Pages
     clean: true,
   },
   module: {
@@ -35,23 +35,13 @@ module.exports = merge(common, {
       template: path.resolve(__dirname, 'public/index.html'),
       filename: 'index.html',
       inject: 'body',
-      minify: {
-        collapseWhitespace: true,
-        removeComments: true,
-        removeRedundantAttributes: true,
-        removeScriptTypeAttributes: true,
-        removeStyleLinkTypeAttributes: true,
-        useShortDoctype: true
-      }
+      minify: true
     })
   ],
   optimization: {
     splitChunks: { chunks: 'all', name: false },
     runtimeChunk: { name: entrypoint => `runtime~${entrypoint.name}` },
     minimize: true,
-    minimizer: [
-      new TerserPlugin({ parallel: true }),
-      new CssMinimizerPlugin()
-    ],
+    minimizer: [new TerserPlugin({ parallel: true }), new CssMinimizerPlugin()]
   }
 });

@@ -1,16 +1,18 @@
 {
   "name": "itstartup-admin",
   "version": "1.0.0",
-  "homepage": ".",
   "description": "Современная админ-панель для IT стартапа",
   "main": "index.tsx",
+  "homepage": "./",
   "scripts": {
     "start": "webpack serve --config webpack.dev.js --env development",
     "build": "webpack --config webpack.prod.js --env production",
     "clean": "rimraf build dist",
     "start:serve": "cd build && npx serve -s .",
     "lint": "echo \"No linter configured\" && exit 0",
-    "test": "echo \"No tests configured\" && exit 0"
+    "test": "echo \"No tests configured\" && exit 0",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "dependencies": {
     "@ant-design/icons": "^5.1.4",
@@ -35,6 +37,7 @@
     "css-minimizer-webpack-plugin": "^7.0.2",
     "dotenv-webpack": "^8.1.1",
     "fork-ts-checker-webpack-plugin": "^9.1.0",
+    "gh-pages": "^6.3.0",
     "html-webpack-plugin": "^5.6.5",
     "mini-css-extract-plugin": "^2.9.4",
     "postcss": "^8.5.6",
