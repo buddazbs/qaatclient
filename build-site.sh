@@ -1,20 +1,33 @@
 #!/bin/bash
-set -e
 
-echo "Сборка React-приложения..."
+# Скрипт для сборки React-приложения и обновления папки public для SourceCraft Sites
 
-# Устанавливаем все зависимости
+echo "Начинаем сборку React-приложения..."
+
+# Устанавливаем зависимости
 npm ci
 
-# Проверяем наличие public/index.html
-if [ ! -f public/index.html ]; then
-  echo "Ошибка: public/index.html не найден"
+# Собираем приложение
+npm run build
+
+# Проверяем, что сборка прошла успешно
+if [ ! -d "build" ]; then
+  echo "Ошибка: папка build не была создана"
   exit 1
 fi
 
-# Сборка
-npm run build
+echo "Сборка завершена успешно"
 
-# Очищаем public и копируем build
+# Очищаем папку public
 rm -rf public/*
+
+# Копируем собранные файлы в папку public
 cp -r build/* public/
+
+# Добавляем изменения в git
+git add public
+
+echo "Папка public обновлена"
+echo "Теперь можно закоммитить изменения:"
+echo "git commit -m "Update static site build""
+echo "git push origin main"
