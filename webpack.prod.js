@@ -4,6 +4,7 @@ const common = require('./webpack.common.js');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = merge(common, {
   mode: 'production',
@@ -11,36 +12,37 @@ module.exports = merge(common, {
   output: {
     path: path.resolve(__dirname, 'build'),
     filename: 'static/js/[name].[contenthash:8].js',
-    publicPath: './',
+    publicPath: '/', // абсолютный путь для корректной загрузки
     clean: true,
   },
   module: {
     rules: [
       {
         test: /\.css$/,
-        use: [
-          MiniCssExtractPlugin.loader,
-          { loader: 'css-loader', options: { importLoaders: 1 } },
-          'postcss-loader'
-        ]
+        use: [MiniCssExtractPlugin.loader, { loader: 'css-loader', options: { importLoaders: 1 } }, 'postcss-loader']
       }
     ]
   },
   plugins: [
-    new MiniCssExtractPlugin({
-      filename: 'static/css/[name].[contenthash:8].css'
+    new MiniCssExtractPlugin({ filename: 'static/css/[name].[contenthash:8].css' }),
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, 'public/index.html'),
+      filename: 'index.html',
+      inject: 'body',
+      minify: {
+        collapseWhitespace: true,
+        removeComments: true,
+        removeRedundantAttributes: true,
+        removeScriptTypeAttributes: true,
+        removeStyleLinkTypeAttributes: true,
+        useShortDoctype: true
+      }
     })
   ],
   optimization: {
-    splitChunks: {
-      chunks: 'all',
-      name: false,
-    },
+    splitChunks: { chunks: 'all', name: false },
     runtimeChunk: { name: entrypoint => `runtime~${entrypoint.name}` },
     minimize: true,
-    minimizer: [
-      new TerserPlugin({ parallel: true }),
-      new CssMinimizerPlugin()
-    ],
+    minimizer: [new TerserPlugin({ parallel: true }), new CssMinimizerPlugin()],
   }
 });
