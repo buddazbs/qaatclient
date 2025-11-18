@@ -12,19 +12,25 @@ module.exports = merge(common, {
   output: {
     path: path.resolve(__dirname, 'build'),
     filename: 'static/js/[name].[contenthash:8].js',
-    publicPath: '/', // абсолютный путь для корректной загрузки
+    publicPath: './', // относительные пути для локального открытия
     clean: true,
   },
   module: {
     rules: [
       {
         test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, { loader: 'css-loader', options: { importLoaders: 1 } }, 'postcss-loader']
+        use: [
+          MiniCssExtractPlugin.loader,
+          { loader: 'css-loader', options: { importLoaders: 1 } },
+          'postcss-loader'
+        ]
       }
     ]
   },
   plugins: [
-    new MiniCssExtractPlugin({ filename: 'static/css/[name].[contenthash:8].css' }),
+    new MiniCssExtractPlugin({
+      filename: 'static/css/[name].[contenthash:8].css'
+    }),
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, 'public/index.html'),
       filename: 'index.html',
@@ -43,6 +49,9 @@ module.exports = merge(common, {
     splitChunks: { chunks: 'all', name: false },
     runtimeChunk: { name: entrypoint => `runtime~${entrypoint.name}` },
     minimize: true,
-    minimizer: [new TerserPlugin({ parallel: true }), new CssMinimizerPlugin()],
+    minimizer: [
+      new TerserPlugin({ parallel: true }),
+      new CssMinimizerPlugin()
+    ],
   }
 });
