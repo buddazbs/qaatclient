@@ -5,11 +5,12 @@
   "description": "Современная админ-панель для IT стартапа",
   "main": "index.tsx",
   "scripts": {
-    "start": "craco start",
-    "build": "craco build",
-    "test": "craco test",
-    "eject": "react-scripts eject",
-    "start:serve": "cd build && serve -s ."
+    "start": "webpack serve --config webpack.dev.js --env development",
+    "build": "webpack --config webpack.prod.js --env production",
+    "clean": "rimraf build dist",
+    "start:serve": "cd build && npx serve -s .",
+    "lint": "echo \"No linter configured\" && exit 0",
+    "test": "echo \"No tests configured\" && exit 0"
   },
   "dependencies": {
     "@ant-design/icons": "^5.1.4",
@@ -21,20 +22,34 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^8.1.1",
-    "react-router-dom": "^6.14.2",
-    "react-scripts": "^5.0.1",
-    "typescript": "^4.9.5"
+    "react-router-dom": "^6.14.2"
   },
   "devDependencies": {
-    "@craco/craco": "^5.9.0",
-    "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^14.4.3",
-    "@types/node": "^20.4.1",
-    "@types/react": "^18.2.14",
-    "@types/react-dom": "^18.2.6",
-    "@types/react-router-dom": "^5.3.3",
-    "serve": "^14.2.5"
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.0",
+    "@types/jest": "^30.0.0",
+    "autoprefixer": "^10.4.22",
+    "clean-webpack-plugin": "^4.0.0",
+    "copy-webpack-plugin": "^13.0.1",
+    "css-loader": "^7.1.2",
+    "css-minimizer-webpack-plugin": "^7.0.2",
+    "dotenv-webpack": "^8.1.1",
+    "fork-ts-checker-webpack-plugin": "^9.1.0",
+    "html-webpack-plugin": "^5.6.5",
+    "mini-css-extract-plugin": "^2.9.4",
+    "postcss": "^8.5.6",
+    "postcss-loader": "^8.2.0",
+    "rimraf": "^5.0.0",
+    "serve": "^14.2.5",
+    "source-map-loader": "^5.0.0",
+    "style-loader": "^4.0.0",
+    "terser-webpack-plugin": "^5.3.14",
+    "ts-loader": "^9.5.4",
+    "typescript": "^4.9.5",
+    "webpack": "^5.103.0",
+    "webpack-cli": "^6.0.1",
+    "webpack-dev-server": "^5.2.2",
+    "webpack-merge": "^6.0.1"
   },
   "browserslist": {
     "production": [

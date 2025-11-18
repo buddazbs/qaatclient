@@ -1,13 +1,12 @@
 #!/bin/bash
-
-# Скрипт для сборки React-приложения и обновления папки public для SourceCraft Sites
+set -euo pipefail
 
 echo "Начинаем сборку React-приложения..."
 
-# Устанавливаем зависимости
+# Устанавливаем все зависимости
 npm ci
 
-# Собираем приложение
+# Чистый билд
 npm run build
 
 # Проверяем, что сборка прошла успешно
@@ -15,19 +14,21 @@ if [ ! -d "build" ]; then
   echo "Ошибка: папка build не была создана"
   exit 1
 fi
-
 echo "Сборка завершена успешно"
 
-# Очищаем папку public
+# Обновляем папку public
+mkdir -p public
 rm -rf public/*
-
-# Копируем собранные файлы в папку public
 cp -r build/* public/
-
-# Добавляем изменения в git
-git add public
-
 echo "Папка public обновлена"
-echo "Теперь можно закоммитить изменения:"
-echo "git commit -m "Update static site build""
-echo "git push origin main"
+
+# Автоматический git commit и push
+if [ -n "$(git status --porcelain public)" ]; then
+  git config --global user.email "ci@sourcecraft.dev"
+  git config --global user.name "SourceCraft CI"
+  git add public
+  git commit -m "Update static site build [skip ci]" --no-verify
+  git push origin main
+else
+  echo "Изменений в public нет, push не требуется"
+fi
