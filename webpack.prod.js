@@ -9,14 +9,13 @@ module.exports = merge(common, {
   mode: 'production',
   devtool: 'source-map',
   output: {
-    path: path.resolve(__dirname, 'build'), // совпадение с CRA ожиданиями
+    path: path.resolve(__dirname, 'build'),
     filename: 'static/js/[name].[contenthash:8].js',
-    publicPath: './', // IMPORTANT: относительные пути, если homepage: "."
+    publicPath: './',
     clean: true,
   },
   module: {
     rules: [
-      // CSS: extract
       {
         test: /\.css$/,
         use: [
