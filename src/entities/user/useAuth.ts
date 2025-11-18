@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+// useAuth.ts
 import { useAppDispatch, useAppSelector } from '@app/hooks';
 import { loginStart, loginSuccess, loginFailure, logout as logoutAction } from '@app/slices/authSlice';
 import { User, LoginRequest } from './types';
@@ -13,7 +13,7 @@ interface UseAuthReturn {
 }
 
 // Моковые данные пользователей
-const MOCK_USERS = [
+const MOCK_USERS: User[] = [
   {
     id: '1',
     username: 'admin',
@@ -32,19 +32,18 @@ const MOCK_USERS = [
 
 export const useAuth = (): UseAuthReturn => {
   const dispatch = useAppDispatch();
-  const { user, token, isAuthenticated, loading, error } = useAppSelector(state => state.auth);
+  const { user, isAuthenticated, loading, error } = useAppSelector(state => state.auth);
 
   const login = async (credentials: LoginRequest): Promise<boolean> => {
     dispatch(loginStart());
-    
+
     try {
       // Имитация API вызова
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      await new Promise(resolve => setTimeout(resolve, 500));
 
-      // Проверка учетных данных
-        const foundUser = MOCK_USERS.find(
-              u => u.username === credentials.username && credentials.password === 'password'
-        ) as User | undefined;
+      const foundUser = MOCK_USERS.find(
+        u => u.username === credentials.username && credentials.password === 'password'
+      ) as User | undefined;
 
       if (foundUser) {
         const mockToken = `mock-jwt-token-${foundUser.id}`;
@@ -55,8 +54,8 @@ export const useAuth = (): UseAuthReturn => {
         return false;
       }
     } catch (err) {
-      const errorMessage = err instanceof Error ? err.message : 'Произошла неизвестная ошибка';
-      dispatch(loginFailure(errorMessage));
+      const message = err instanceof Error ? err.message : 'Произошла неизвестная ошибка';
+      dispatch(loginFailure(message));
       return false;
     }
   };
