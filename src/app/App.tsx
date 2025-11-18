@@ -3,7 +3,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { ConfigProvider, theme } from 'antd';
 import { useTheme } from '@shared/hooks/useTheme';
 import { AppRouter } from '@app/providers/router';
-import { useAuth } from '@entities/user';
+import { useAuth } from '@entities/user/useAuth';
 import { AppLayout } from '@app/AppLayout';
 import '@shared/styles/index.css';
 

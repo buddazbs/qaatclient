@@ -6,7 +6,7 @@ import { AutotestsPage } from '@pages/autotests/AutotestsPage';
 import { TestResultsPage } from '@pages/test-results/TestResultsPage';
 import { CallbackPage } from '@pages/callback/CallbackPage';
 import { AccountPage } from '@pages/account/AccountPage';
-import { useAuth } from '@entities/user';
+import { useAuth } from '@entities/user/useAuth';
 
 // Компонент для защищенных маршрутов
 const ProtectedRoute: React.FC<{ children: React.ReactNode; allowedRoles?: ('admin' | 'user')[] }> = ({ 

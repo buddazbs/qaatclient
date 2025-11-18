@@ -11,7 +11,7 @@ import {
   UserOutlined
 } from '@ant-design/icons';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { useAuth } from '@entities/user';
+import { useAuth } from '@entities/user/useAuth';
 
 const { Sider } = Layout;
 

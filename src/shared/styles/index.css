@@ -1,5 +1,6 @@
 @import '~antd/dist/reset.css';
-@import './shared/animations/index.css';
+@import '../animations/index.css';
+
 
 body {
   margin: 0;

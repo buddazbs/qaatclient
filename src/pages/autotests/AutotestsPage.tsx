@@ -90,7 +90,7 @@ export const AutotestsPage: React.FC = () => {
       
       <Row gutter={[16, 16]} style={{ marginBottom: 24 }}>
         {markets.map(market => {
-          const statusConfig = getStatusConfig(market.status);
+          const statusConfig = getStatusConfig(market.status as TestStatus);
           
           return (
             <Col xs={24} sm={12} lg={8} key={market.id}>

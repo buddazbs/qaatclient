@@ -8,7 +8,7 @@ import {
   MoonOutlined,
   SunOutlined
 } from '@ant-design/icons';
-import { useAuth } from '@entities/user';
+import { useAuth } from '@entities/user/useAuth';
 import { useTheme } from '@shared/hooks/useTheme';
 
 const { Header } = Layout;

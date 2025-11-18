@@ -9,7 +9,7 @@ import {
   PieChartOutlined,
   LineChartOutlined
 } from '@ant-design/icons';
-import { useAuth } from '@entities/user';
+import { useAuth } from '@entities/user/useAuth';
 
 const { Title } = Typography;
 
