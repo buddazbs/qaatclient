@@ -2,6 +2,7 @@
   "name": "itstartup-admin",
   "version": "1.0.0",
   "description": "админ-панель",
+  "homepage": "https://buddazbs.github.io/qaatclient",
   "main": "index.tsx",
   "scripts": {
     "start": "webpack serve --config webpack.dev.js --env development",
