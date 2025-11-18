@@ -1,34 +1,20 @@
 #!/bin/bash
-set -euo pipefail
+set -e
 
-echo "Начинаем сборку React-приложения..."
+echo "Сборка React-приложения..."
 
 # Устанавливаем все зависимости
 npm ci
 
-# Чистый билд
-npm run build
-
-# Проверяем, что сборка прошла успешно
-if [ ! -d "build" ]; then
-  echo "Ошибка: папка build не была создана"
+# Проверяем наличие public/index.html
+if [ ! -f public/index.html ]; then
+  echo "Ошибка: public/index.html не найден"
   exit 1
 fi
-echo "Сборка завершена успешно"
 
-# Обновляем папку public
-mkdir -p public
+# Сборка
+npm run build
+
+# Очищаем public и копируем build
 rm -rf public/*
 cp -r build/* public/
-echo "Папка public обновлена"
-
-# Автоматический git commit и push
-if [ -n "$(git status --porcelain public)" ]; then
-  git config --global user.email "ci@sourcecraft.dev"
-  git config --global user.name "SourceCraft CI"
-  git add public
-  git commit -m "Update static site build [skip ci]" --no-verify
-  git push origin main
-else
-  echo "Изменений в public нет, push не требуется"
-fi
