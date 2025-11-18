@@ -42,9 +42,9 @@ export const useAuth = (): UseAuthReturn => {
       await new Promise(resolve => setTimeout(resolve, 1000));
 
       // Проверка учетных данных
-      const foundUser = MOCK_USERS.find(
-        u => u.username === credentials.username && credentials.password === 'password'
-      );
+        const foundUser = MOCK_USERS.find(
+              u => u.username === credentials.username && credentials.password === 'password'
+        ) as User | undefined;
 
       if (foundUser) {
         const mockToken = `mock-jwt-token-${foundUser.id}`;
