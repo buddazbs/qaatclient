@@ -32,7 +32,7 @@ export default defineConfig({
     ],
   },
   build: {
-    outDir: 'build',
+    outDir: 'dist',
     sourcemap: false,
     cssCodeSplit: true,
     minify: 'esbuild',
